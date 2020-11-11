@@ -8,7 +8,7 @@ pipeline {
 		agent { docker 'python:2-alpine'} 
 		
 		steps {
-			sh 'python -m py_compile sources/add2vals.py sources/calc.py' 
+			bat' python -m py_compile sources/add2vals.py sources/calc.py' 
 		      }
       	     }
 
@@ -17,7 +17,7 @@ pipeline {
            	 agent { docker 'qnib/pytest' }
             
 		 steps {
-			sh 'py.test --verbose --junit-xml test-reports/results.xml sources/test_calc.py'
+			bat 'py.test --verbose --junit-xml test-reports/results.xml sources/test_calc.py'
 		       }
        	     }
 		
@@ -26,7 +26,7 @@ pipeline {
 		  agent { docker 'cdrx/pyinstaller-linux:python2' } 
 		
 		  steps {
-			sh 'pyinstaller --onefile sources/add2vals.py' 
+			bat 'pyinstaller --onefile sources/add2vals.py' 
 			}
 		     
              }
